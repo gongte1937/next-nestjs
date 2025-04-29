@@ -23,11 +23,13 @@ export class CreateUserDto {
 
   @IsEmail()
   @IsNotEmpty()
+  @MaxLength(96)
   email: string;
 
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
+  @MaxLength(96)
   @Matches(/(?=.*[0-9])(?=.*[a-zA-Z])/, {
     message: 'password must contain at least one letter and one number',
   })

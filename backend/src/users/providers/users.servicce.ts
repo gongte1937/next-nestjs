@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { GetUsersParamsDto } from '../dtos/get-users-params.dto';
 import { AuthService } from 'src/auth/auth.service';
 
@@ -6,6 +6,7 @@ import { AuthService } from 'src/auth/auth.service';
 export class UsersService {
   constructor(
     // Inject auth service
+    @Inject(forwardRef(() => AuthService))
     private readonly authService: AuthService,
   ) {}
   public findAll(

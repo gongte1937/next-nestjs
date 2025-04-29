@@ -14,8 +14,10 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamsDto } from './dtos/get-users-params.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.servicce';
+import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('Users')
 export class UsersController {
   constructor(
     // Injecting user service
@@ -23,6 +25,17 @@ export class UsersController {
   ) {}
 
   @Get(':id')
+  @ApiOperation({
+    summary: 'Fetch a list of registered users on applications',
+  })
+  @ApiResponse({
+    status: 200,
+  })
+  @ApiQuery({
+    name: 'limit',
+    type: 'number',
+    required: false,
+  })
   public getUsers(
     @Param() getUserParamDto: GetUsersParamsDto,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
