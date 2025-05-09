@@ -50,7 +50,7 @@ export class UsersController {
   public createUser(@Body() createUserDto: CreateUserDto) {
     console.log({ createUserDto });
     console.log(typeof createUserDto);
-    return 'User created!';
+    return this.userService.createUser(createUserDto);
   }
 
   @Patch()
