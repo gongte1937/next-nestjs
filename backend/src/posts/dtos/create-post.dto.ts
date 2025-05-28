@@ -8,17 +8,21 @@ import {
   IsString,
   IsUrl,
   Matches,
+  max,
+  Max,
+  MaxLength,
   MinLength,
   ValidateNested,
 } from 'class-validator';
 import { postStatus } from '../enums/postStatus.enum';
 import { postType } from '../enums/postType.enum';
-import { CreatePostMetaOptionsDto } from './create-post-meta-options.dto';
+import { CreatePostMetaOptionsDto } from '../../meta-options/dtos/create-post-meta-options.dto';
 import { Type } from 'class-transformer';
 
 export class CreatePostDto {
   @IsString()
   @MinLength(4)
+  @MaxLength(512)
   @IsNotEmpty()
   title: string;
 
@@ -27,6 +31,7 @@ export class CreatePostDto {
   postType: postType;
 
   @IsString()
+  @MaxLength(256)
   @IsNotEmpty()
   @Matches(/^[A-Z]{1}[A-z0-9]{2,50}$/, {
     message: 'A slug must be small letter',
@@ -47,6 +52,7 @@ export class CreatePostDto {
 
   @IsOptional()
   @IsUrl()
+  @MaxLength(1024)
   featureImageUrl?: string;
 
   @IsOptional()

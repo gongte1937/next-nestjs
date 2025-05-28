@@ -1,0 +1,24 @@
+POST http://localhost:5001/posts
+Content-Type: application/json
+{
+    "title": "My first post",
+    "postType": "post",
+    "slug": "A12345",
+    "status": "draft",
+    "content": "test content",
+   "schema": "{\"type\": \"object\", \"properties\": {\"title\": {\"type\": \"string\"}}}",
+    "featureImageUrl": "https://example.com/image.jpg",
+    "publishOn": "2023-10-01T00:00:00Z",
+    "tags": ["tag1", "tag2"],
+    "metaOptions":[
+        {
+            "key": "description",
+            "value": "This is a description"
+        },
+        {
+            "key": "keywords",
+            "value": "keyword1, keyword2"
+        }
+    ]
+
+}
